@@ -1,0 +1,16 @@
+name: Debug
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish_image:
+    name: Read GitHub metadata
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Debug
+        run: |
+          echo "Hello world"
