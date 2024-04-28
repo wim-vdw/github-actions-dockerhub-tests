@@ -1,4 +1,4 @@
-name: Publish a release
+name: Publish Docker image
 
 on:
   release:
@@ -6,32 +6,7 @@ on:
 
 jobs:
   publish_image:
-    name: Publish image on Docker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-
-      - name: Display release
-        run: |
-          echo "Release: ${{ github.ref_name }}"
-
-      - name: Login to Docker Hub
-        run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build image
-        run: |
-          docker build . -t wimvandenwyngaert/test:${{ github.ref_name }}
-          docker image tag wimvandenwyngaert/test:${{ github.ref_name }} wimvandenwyngaert/test:latest
-          
-      - name: Push image to Docker Hub
-        run: |
-          docker push wimvandenwyngaert/test:${{ github.ref_name }} 
-          docker push wimvandenwyngaert/test:latest
-    
-  read_published_image:
-    name: Read published image
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -52,4 +27,12 @@ jobs:
       - name: Display metadata
         run: |
           echo "Tags: ${{ steps.meta.outputs }}"
-    
+          
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: wimvandenwyngaert/test:latest, wimvandenwyngaert/test:${{ github.ref_name }}
+          labels: ${{ steps.meta.outputs.labels }}
