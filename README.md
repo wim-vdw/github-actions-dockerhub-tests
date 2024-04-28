@@ -1,1 +1,1 @@
-# test-github-actions-dockerhub
+# github-actions-dockerhub-tests
