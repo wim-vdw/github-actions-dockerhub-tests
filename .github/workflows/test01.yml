@@ -1,0 +1,14 @@
+name: Publish a release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish_image:
+    name: Publish image on Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        
