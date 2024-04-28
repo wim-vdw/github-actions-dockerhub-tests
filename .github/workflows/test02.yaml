@@ -3,20 +3,15 @@ name: Debug
 on:
   workflow_dispatch:
     inputs:
-      name:
-        type: choice
-        description: Who to greet
-        options: 
-        - monalisa
-        - cschleiden
-      message:
+      latest:
+        description: 'Latest'
         required: true
-      use-emoji:
         type: boolean
-        description: Include 🎉🤣 emojis
-      environment:
-        type: environment
-        
+      tags:
+        description: 'Tags'
+        required: true
+        type: string
+
 jobs:
   publish_image:
     name: Read GitHub metadata
@@ -28,3 +23,5 @@ jobs:
       - name: Debug
         run: |
           echo "Hello world"
+          echo ${{ inputs.latest }} 
+          echo ${{ inputs.tags }} 
