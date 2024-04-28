@@ -23,5 +23,5 @@ jobs:
       - name: Debug
         run: |
           echo "Hello world"
-          echo ${{ inputs.latest }} 
-          echo ${{ inputs.tags }} 
+          echo "Latest: ${{ inputs.latest }}" 
+          echo "Tags: ${{ inputs.tags }}" 
