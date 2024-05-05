@@ -31,6 +31,8 @@ jobs:
         uses: docker/metadata-action@v5.5.1
         with:
           images: wimvandenwyngaert/test
+          tags: |
+            type=semver,pattern={{major}}.{{minor}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5.3.0
