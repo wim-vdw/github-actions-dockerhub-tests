@@ -1,3 +1,3 @@
 FROM alpine:3.23
 
-RUN apk add --no-cache tzdata curl jq nmap
+RUN apk add --no-cache tzdata curl jq nmap redis
