@@ -1,3 +1,3 @@
-FROM alpine:3.23
+FROM alpine:3.24.1
 
 RUN apk add --no-cache tzdata curl jq nmap redis rsync openssh-client
