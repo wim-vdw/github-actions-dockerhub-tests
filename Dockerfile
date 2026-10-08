@@ -1,4 +1,4 @@
-FROM alpine:3.24.1
+FROM alpine:3.24.2
 
 LABEL org.opencontainers.image.source="https://github.com/wim-vdw/github-actions-dockerhub-tests" \
       org.opencontainers.image.description="Toolbox image for Kubernetes Jobs/CronJobs" \
